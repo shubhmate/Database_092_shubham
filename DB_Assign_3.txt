@@ -1,0 +1,14 @@
+/*
+Subject :DB (Assign_3:-Overview of SQL.)
+Name    :Shubham Bhaurao Mate
+Roll No.:92 
+*/
+
+1) Does ANSI recognize the data type DATE?
+==>Yes. YYYY-MM-DD is the default date format.
+---------------------------------------------------------------------
+
+2) Which subdivision of SQL is used to insert values in tables?
+==>INSERT is used to INSERT data into Table.
+   e.g. INSERT into Student values (01,'Shubham');
+---------------------------------------------------------------------

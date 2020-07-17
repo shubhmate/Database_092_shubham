@@ -1,0 +1,26 @@
+/*
+Subject :DB (Assign_2:-Introducing Relational Databases)
+Name    :Shubham Bhaurao Mate
+Roll No.:92 
+*/
+
+1) Which field of the Customers table is the primary key?
+==>Primary Key of Customer Table:Cnum(i.e.Customer_Number).
+------------------------------------------------------------------------
+
+2) What is the 4th column of the Customers table?
+==>Rating.
+------------------------------------------------------------------------
+
+3) What is another word for row? For column?
+==>Another word for: ROW   ->Entity,Tuple,Opportunity
+                     Column->Attributes,Entity Class,Relation,Matrix
+------------------------------------------------------------------------
+
+4) Why isn’t it possible to see the first five rows of a table?
+==>*Rows of a table are not stored sequentially.
+   *Rows of table are scattered all over database server.
+   *All rows will always be in ascending order of row address.
+   *We didn't know the row address and actual position of row in memory 
+    that's why it is not possible to see the first five rows of a table.
+------------------------------------------------------------------------  
