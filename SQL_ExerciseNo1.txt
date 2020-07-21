@@ -1,0 +1,130 @@
+/*
+Subject :SQL Exercise 1
+Name    :Shubham Bhaurao Mate
+Roll No.:92 
+*/
+-------------------------------------------------------------------------------
+
+1}
+==>show databases;
+   create database exercise;
+   create schema exercise;
+   use exercise;
+   create table SEMP
+   (
+    Empno char (4),
+    Empname char(20),
+    Basic float(9,2),
+    Deptno char(2),
+    Depthead char(4)
+   );
+   show tables;
+-------------------------------------------------------------------------------
+
+2}
+==>create table SDEPT
+   (
+    Deptno char(2),
+    Deptname char(15)
+   );
+   show tables;
+-------------------------------------------------------------------------------
+
+3}
+==>INSERT INTO SDEPT(Deptno,Deptname)
+   values ('10','Development'),
+          ('20','Training');
+   select * from SDEPT;
+-------------------------------------------------------------------------------
+
+4}
+==>INSERT INTO SEMP (Empno,Empname,Basic,Deptno,Depthead)
+   values ('0001','SUNIL',6000,'10','NULL'),
+          ('0002','HIREN',8000,'20','NULL'),
+          ('0003','ALI',4000,'10','0001'),
+          ('0004','GEORGE',6000,NULL,'0002');
+       
+   create table SUPPLIER
+   (
+    Sno char (4),
+    Sname varchar(20),
+    Status char(10),
+    City varchar(20)
+   );
+   show tables;
+
+   insert into SUPPLIER(Sno,Sname,Status,City)
+   values ('s1','bob','25','london'),
+          ('s2','shichan','22','Athens'),
+          ('s3','oswald','12','london'),
+          ('s4','Jay','10','Athens'),
+          ('s5','Annie','28','Paris');
+       
+   create table PARTS
+   (
+    Pno char(4),
+    Pname varchar(20),
+    Color char(15),
+    Weight int(4),
+    City varchar(15)
+   );
+   show tables;
+
+   insert into Parts(Pno,Pname,Color,Weight,City)
+   values ('p1','koko','white',20,'Gondia'),
+          ('p2','kittu','black',13,'Pune'),
+          ('p3','jiya','red',14,'London'),
+          ('p4','tanie','red',12,'Paris');
+       
+   create table PROJECTS
+   (
+    Jno char(4),
+    Jname varchar (20),
+    City varchar (15)
+   );
+   show tables;
+
+   insert into PROJECTS (Jno,Jname,City)
+   values ('j1','Noddy','Athens'),
+          ('j2','Nobita','Paris'),
+          ('j3','Kiterestu','Athens');
+       
+   create table SUPPLIER_PARTS_PROJECTS
+   (
+    Sno char(4),
+    Pno char(4),
+    Jno char(4),
+    QTY int(6)
+   );
+   show tables;
+
+   insert into SUPPLIER_PARTS_PROJECTS(Sno,Pno,Jno,QTY)
+   values ('s1','p1','j1',400),
+          ('s2','p2','j2',724),
+          ('s3','p3','j3',250);
+-------------------------------------------------------------------------------       
+
+5}
+==>select * from SUPPLIER;
+-------------------------------------------------------------------------------
+
+6}
+==>select Sno,Sname from SUPPLIER;
+-------------------------------------------------------------------------------
+
+7}
+==>select Pname,Color from PARTS where city='London';
+-------------------------------------------------------------------------------
+
+8}
+==>select * from SUPPLIER where CITY='london';
+-------------------------------------------------------------------------------
+
+9}
+==>select * from SUPPLIER where city='paris' or 'athens';
+-------------------------------------------------------------------------------
+
+10}
+==>select * from PROJECTS where city = 'Athens';
+-------------------------------------------------------------------------------
+       

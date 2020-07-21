@@ -1,0 +1,54 @@
+/*
+Subject :SQL Exercise 3
+Name    :Shubham Bhaurao Mate
+Roll No.:92 
+*/
+-------------------------------------------------------------------------------
+
+     ==show databases;
+     ==use exercise;
+
+1} Display all the Supplier names with the initial letter capital.
+==>select Sname from SUPPLIER
+   where ascii(upper(substr(Sname,1,1)))=ascii(Sname);
+-------------------------------------------------------------------------------
+
+2} Display all the Supplier names in upper case.
+==>select upper(Sname) from SUPPLIER;
+-------------------------------------------------------------------------------
+
+3} Display all the Supplier names in lower case.
+==>select lower(Sname) from SUPPLIER;
+-------------------------------------------------------------------------------
+
+4} Display all the Supplier names padded to 25 characters, with spaces on the
+   left.
+==>select lpad(Sname,25,'') from SUPPLIER;
+-------------------------------------------------------------------------------
+
+5} Display all the Supplier names (with ‘la’ replaced by ‘ro’).
+   HINT: REPLACE.
+==>select replace(Sname,'la','ro') from SUPPLIER;
+-------------------------------------------------------------------------------
+
+6} Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is 
+   replaced with ‘o’.
+==>select replace (replace (Sname,'l','r'),'a','o')from SUPPLIER;
+-------------------------------------------------------------------------------
+
+7} Display the Supplier names and the lengths of the names.
+==>select Sname,length(Sname) as length from SUPPLIER;
+-------------------------------------------------------------------------------
+
+8} Use the soundex function to search for a supplier by the name of ‘BLOKE’.
+==>select Sname from SUPPLIER
+   where soundex (Sname)=soundex('BLOKE');
+-------------------------------------------------------------------------------
+
+9} Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
+==>select Sname,Status from SUPPLIER;
+-------------------------------------------------------------------------------
+
+10} Display the current day (e.g. Thursday).
+==> select DAYNAME ("2020-07-20");
+-------------------------------------------------------------------------------
