@@ -1,0 +1,87 @@
+/*
+Subject :DB (Assign_9:Querying Multiple Tables at Once.)
+Name    :Shubham Bhaurao Mate
+Roll No.:92 
+*/
+
+1) Write a query that lists each order number followed by the name of the 
+   customer who made the order.
+==>select onum,cname
+   from orders o,customers c
+   where c.cnum=o.cnum;
+   +------+----------+
+   | onum | cname    |
+   +------+----------+ 
+   | 3001 | Cisneros |
+   | 3003 | Hoffman  |
+   | 3002 | Pereira  |
+   | 3005 | Liu San  |
+   | 3006 | Cisneros |
+   | 3009 | Giovanni |
+   | 3007 | Grass    |
+   | 3008 | Clemens  |
+   | 3010 | Grass    |
+   | 3011 | Clemens  |
+   +------+----------+
+===============================================================================
+
+2) Write a query that gives the names of both the salesperson and the customer 
+   for each order along with the order number.
+==>select sname,cname,onum
+   from orders o,customers c,salespeople s
+   where o.snum=c.snum
+   and o.snum=s.snum;
+   +---------+----------+------+
+   | sname   | cname    | onum |
+   +---------+----------+------+
+   | Rifkin  | Cisneros | 3001 |
+   | Peel    | Hoffman  | 3003 |
+   | Peel    | Clemens  | 3003 |
+   | Motika  | Pereira  | 3002 |
+   | Serres  | Grass    | 3005 |
+   | Serres  | Liu San  | 3005 |
+   | Rifkin  | Cisneros | 3006 |
+   | Axelrod | Giovanni | 3009 |
+   | Serres  | Grass    | 3007 |
+   | Serres  | Liu San  | 3007 |
+   | Peel    | Hoffman  | 3008 |
+   | Peel    | Clemens  | 3008 |
+   | Serres  | Grass    | 3010 |
+   | Serres  | Liu San  | 3010 |
+   | Peel    | Hoffman  | 3011 |
+   | Peel    | Clemens  | 3011 |
+   +---------+----------+------+
+===============================================================================
+
+3) Write a query that produces all customers serviced by salespeople with a 
+   commission above 12%.
+   Output the customer’s name, the salesperson’s name, and the salesperson’s 
+   rate of commission.
+==>SELECT c.cname, s.sname, s.comm
+   FROM customers c, salespeople s
+   WHERE comm > 0.12 AND c.snum=s.snum;
+   +----------+--------+------+
+   | cname    | sname  | comm |
+   +----------+--------+------+
+   | Grass    | Serres | 0.13 |
+   | Cisneros | Rifkin | 0.15 |
+   | Liu San  | Serres | 0.13 |
+   +----------+--------+------+
+===============================================================================
+
+4) Write a query that calculates the amount of the salesperson’s commission on each order by 
+    a customer with a rating above 100.
+==>SELECT s.sname, c.cname, o.amt*s.comm AS "comm"
+   FROM orders o, customers c, salespeople s
+   WHERE c.rating > 100 AND o.cnum=c.cnum AND o.snum=s.snum;
+   +---------+----------+--------+
+   | sname   | cname    | comm   |
+   +---------+----------+--------+
+   | Serres  | Liu San  | 670.86 |
+   | Serres  | Grass    |   9.85 |
+   | Serres  | Grass    | 170.29 |
+   | Rifkin  | Cisneros |   2.80 |
+   | Rifkin  | Cisneros | 164.72 |
+   | Axelrod | Giovanni | 171.32 |
+   +---------+----------+--------+
+===============================================================================

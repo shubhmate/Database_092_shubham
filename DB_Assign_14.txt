@@ -1,0 +1,121 @@
+/*
+Subject :DB (Assign_14:Inserting, Deleting, and Changing Field Values.)
+Name    :Shubham Bhaurao Mate
+Roll No.:92 
+*/
+
+1) Write a command that puts the following values, in their given order, into 
+   the salespeople table: city – San Jose, name – Blanco, comm – NULL, 
+   snum – 1100.
+==>INSERT INTO salespeople (city,sname,comm,snum)
+   VALUES('San Jose','Blanco', NULL, 1100); 
+   --1 row created.
+===============================================================================
+
+2) Write a command that removes all orders from customer Clemens from the
+   Orders table.
+==>SELECT * FROM orders;
+
+   ONUM    AMT       ODATE        CNUM    SNUM
+   3001    18.69     03-OCT-90    2008    1007
+   3003    767.19    03-OCT-90    2001    1001
+   3002    1900.1    03-OCT-90    2007    1004
+   3005    5160.45   03-OCT-90    2003    1002
+   3006    1098.16   03-OCT-90    2008    1007
+   3009    1713.23   04-OCT-90    2002    1003
+   3007    75.75     04-OCT-90    2004    1002
+   3008    4723      05-OCT-90    2006    1001
+   3010    1309.95   06-OCT-90    2004    1002
+   3011    9891.88   06-OCT-90    2006    1001
+   10 rows selected.
+
+   DELETE FROM orders WHERE cnum IN (SELECT cnum FROM customers 
+   WHERE cname='Clemens');
+   --2 rows deleted.
+
+   SELECT * FROM orders;
+
+   ONUM    AMT        ODATE        CNUM    SNUM
+   3001    18.69      03-OCT-90    2008    1007
+   3003    767.19     03-OCT-90    2001    1001
+   3002    1900.1     03-OCT-90    2007    1004
+   3005    5160.45    03-OCT-90    2003    1002
+   3006    1098.16    03-OCT-90    2008    1007
+   3009    1713.23    04-OCT-90    2002    1003
+   3007    75.75      04-OCT-90    2004    1002
+   3010    1309.95    06-OCT-90    2004    1002
+   8 rows selected.
+
+   ROLLBACK TO savepoint a;
+   --Rollback complete.
+
+   SELECT * FROM orders;
+
+   ONUM    AMT        ODATE        CNUM    SNUM
+   3001    18.69      03-OCT-90    2008    1007
+   3003    767.19     03-OCT-90    2001    1001
+   3002    1900.1     03-OCT-90    2007    1004
+   3005    5160.45    03-OCT-90    2003    1002
+   3006    1098.16    03-OCT-90    2008    1007
+   3009    1713.23    04-OCT-90    2002    1003     
+   3007    75.75      04-OCT-90    2004    1002
+   3008    4723       05-OCT-90    2006    1001
+   3010    1309.95    06-OCT-90    2004    1002
+   3011    9891.88    06-OCT-90    2006    1001
+   10 rows selected.
+===============================================================================
+
+3) Write a command that increases the rating of all customers in Rome by 100.\
+==>SELECT *FROM customers;
+
+   CNUM    CNAME      CITY        RATING SNUM
+   2001    Hoffman    London      100    1001
+   2002    Giovanni   Rome        200    1003
+   2004    Grass      Berliln     300    1002
+   2006    Clemens    London      100    1001
+   2008    Cisneros   San Jose    300    1007
+   2007    Pereira    Rome        100    1004
+   2003    Liu        San Jose    200    1002
+   7 rows selected.
+
+   savepoint a;
+   --Savepoint created.
+
+   UPDATE customers
+   SET rating=rating+100;
+   --7 rows updated.
+
+   SELECT * FROM Customers;
+
+   CNUM    CNAME      CITY       RATING    SNUM
+   2001    Hoffman    London     200       1001
+   2002    Giovanni   Rome       300       1003
+   2004    Grass      Berliln    400       1002
+   2006    Clemens    London     200       1001
+   2008    Cisneros   San Jose   400       1007
+   2007    Pereira    Rome       200       1004
+   2003    Liu        San Jose   300       1002
+   7 rows selected.
+
+   ROLLBACK TO savepoint a;
+   --Rollback complete.
+
+   SELECT * FROM customers;
+
+   CNUM    CNAME      CITY        RATING  SNUM
+   2001    Hoffman    London      100     1001
+   2002    Giovanni   Rome        200     1003
+   2004    Grass      Berliln     300     1002
+   2006    Clemens    London      100     1001
+   2008    Cisneros   San Jose    300     1007
+   2007    Pereira    Rome        100     1004
+   2003    Liu        San Jose    200     1002
+   7 rows selected.
+===============================================================================
+
+4) Salesperson Serres has left the company. Assign her customers to Motika.
+==>UPDATE customers SET snum= (SELECT snum FROM salespeople 
+   WHERE sname='serres')
+   WHERE snum =(SELECT snum FROM salespeople WHERE sname='Motika');
+   --1 row updated.
+===============================================================================
