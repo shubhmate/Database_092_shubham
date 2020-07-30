@@ -1,0 +1,36 @@
+/*
+Subject :DB (Assign_15:Using Subqueries with DML Commands.)
+Name    :Shubham Bhaurao Mate
+Roll No.:92 
+*/
+
+1) Assume there is a table called Multicust, with all of the same column 
+   definitions as Salespeople. Write a command that inserts all salespeople 
+   with more than one customer into this table.
+==>select * from SALESPEOPLE
+   where Snum IN (select Snum from CUSTOMERS group by Snum having 
+                  count(Snum)>1);
+   +------+--------+----------+------+
+   | snum | Sname  | City     | Comm |
+   +------+--------+----------+------+
+   | 1001 | Peel   | London   | 0.12 |
+   | 1002 | Serres | San Jose | 0.13 |
+   +------+--------+----------+------+
+   2 rows in set (0.08 sec)
+===============================================================================
+
+2) Write a command that deletes all customers with no current orders.
+==>delete from CUSTOMERS
+   where Cnum= (select tempp.Cnum from
+               (select Cnum from CUSTOMERS
+               where Cnum not in
+               (select Cnum from ORDERS)) as tempp);
+===============================================================================
+
+3) Write a command that increases by twenty percent the commissions of all 
+   salespeople with total orders above Rs. 3,000.
+==>Update SALESPEOPLE set Comm = Comm + 0.20
+   where Snum= (select Snum from
+               (select Snum,sum(AMT) as Amount from ORDERS
+                group by Snum having amount > 30000) as tempp);
+===============================================================================
